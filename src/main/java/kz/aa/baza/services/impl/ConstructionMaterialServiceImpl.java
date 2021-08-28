@@ -1,12 +1,13 @@
 package kz.aa.baza.services.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import kz.aa.baza.dtos.InputConstructionMaterialDto;
+import kz.aa.baza.exceptions.CityException;
 import kz.aa.baza.exceptions.ConstructorMaterialException;
-import kz.aa.baza.models.City;
 import kz.aa.baza.models.ConstructionMaterial;
 import kz.aa.baza.repositories.ConstructionMaterialRepository;
+import kz.aa.baza.services.CityService;
 import kz.aa.baza.services.ConstructionMaterialService;
+import kz.as.registry.City;
 import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +19,16 @@ import java.util.Optional;
 
 @Service
 public class ConstructionMaterialServiceImpl implements ConstructionMaterialService {
-
+    private final CityService cityService;
     private final ModelMapper modelMapper;
-    private final ObjectMapper objectMapper;
     private final ConstructionMaterialRepository constructionMaterialRepository;
 
     @Autowired
-    public ConstructionMaterialServiceImpl(                                           ModelMapper modelMapper,
-                                           ObjectMapper objectMapper,
+    public ConstructionMaterialServiceImpl(CityService cityService,
+                                           ModelMapper modelMapper,
                                            ConstructionMaterialRepository constructionMaterialRepository) {
+        this.cityService = cityService;
         this.modelMapper = modelMapper;
-        this.objectMapper = objectMapper;
         this.constructionMaterialRepository = constructionMaterialRepository;
     }
 
@@ -48,12 +48,15 @@ public class ConstructionMaterialServiceImpl implements ConstructionMaterialServ
     public @NonNull ConstructionMaterial create(@NonNull InputConstructionMaterialDto constructionMaterialDto) {
         final ConstructionMaterial constructionMaterial = modelMapper.map(constructionMaterialDto, ConstructionMaterial.class);
         throwIfTitleAlreadyExists(constructionMaterial.getTitle());
-        throwIfCityNotExists(constructionMaterial.getCity());
-        return null;
+        throwIfCityNotExists(constructionMaterial.getCityId());
+        return constructionMaterialRepository.save(constructionMaterial);
     }
 
-    private void throwIfCityNotExists(City city) {
-
+    private void throwIfCityNotExists(Long cityId) {
+        final City city = cityService.getById(cityId);
+        if (city == null) {
+            throw new CityException();
+        }
     }
 
     private void throwIfTitleAlreadyExists(String title) {

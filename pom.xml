@@ -16,6 +16,9 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <protobuf.version>3.14.0</protobuf.version>
+        <protobuf-plugin.version>0.6.1</protobuf-plugin.version>
+        <grpc.version>1.35.0</grpc.version>
     </properties>
     <dependencies>
         <dependency>
@@ -124,6 +127,12 @@
             <groupId>io.github.lognet</groupId>
             <artifactId>grpc-spring-boot-starter</artifactId>
             <version>4.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>kz.as</groupId>
+            <artifactId>registry</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

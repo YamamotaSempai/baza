@@ -1,15 +1,23 @@
 package kz.aa.baza.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
-@Table(name = "constructor_material")
+@Table(name = "constructor_materials")
 public class ConstructionMaterial {
 
     @JsonIgnore
@@ -45,15 +53,19 @@ public class ConstructionMaterial {
     @NotNull
     private double price;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "city_id", nullable = false)
-    private City city;
+    @Column(name = "city_id", nullable = false) private Long cityId;
 
-    public City getCity() {
-        return city;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        ConstructionMaterial that = (ConstructionMaterial) o;
+
+        return Objects.equals(id, that.id);
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    @Override
+    public int hashCode() {
+        return 654229355;
     }
 }
