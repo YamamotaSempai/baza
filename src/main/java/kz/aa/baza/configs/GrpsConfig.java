@@ -2,7 +2,7 @@ package kz.aa.baza.configs;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import kz.as.registry.CityServiceGrpc;
+import kz.aa.registry.CityServiceGrpc;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

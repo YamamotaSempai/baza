@@ -1,6 +1,6 @@
 package kz.aa.baza.services;
 
-import kz.as.registry.City;
+import kz.aa.registry.City;
 import lombok.NonNull;
 
 public interface CityService {

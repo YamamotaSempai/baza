@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/construction-materials")
@@ -29,8 +30,8 @@ public class ConstructionMaterialController {
 
     @PostMapping
     public ResponseEntity<ConstructionMaterial> create(@RequestBody InputConstructionMaterialDto constructionMaterialDto,
-                                                       Authentication authentication) {
-        constructionMaterialDto.setAuthor(1L);
+                                                       Principal principal) {
+        constructionMaterialDto.setAuthor(Long.valueOf(principal.getName()));
         ConstructionMaterial constructionMaterial = constructionMaterialService.create(constructionMaterialDto);
         return ResponseEntity.ok(constructionMaterial);
     }

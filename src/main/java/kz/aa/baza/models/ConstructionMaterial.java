@@ -55,6 +55,10 @@ public class ConstructionMaterial {
 
     @Column(name = "city_id", nullable = false) private Long cityId;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

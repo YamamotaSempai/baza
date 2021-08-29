@@ -1,10 +1,10 @@
 package kz.aa.baza.configs;
 
-import kz.as.registry.configs.CustomAuthenticationProvider;
-import kz.as.registry.jwt.JWTConfigurer;
-import kz.as.registry.jwt.JwtAccessDeniedHandler;
-import kz.as.registry.jwt.JwtAuthenticationEntryPoint;
-import kz.as.registry.jwt.TokenProvider;
+import kz.aa.registry.configs.CustomAuthenticationProvider;
+import kz.aa.registry.jwt.JWTConfigurer;
+import kz.aa.registry.jwt.JwtAccessDeniedHandler;
+import kz.aa.registry.jwt.JwtAuthenticationEntryPoint;
+import kz.aa.registry.jwt.TokenProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
