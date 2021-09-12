@@ -12,4 +12,6 @@ public interface ConstructionMaterialService {
     ConstructionMaterial get(@NonNull Long id);
 
     @NonNull ConstructionMaterial create(@NonNull InputConstructionMaterialDto constructionMaterialDto);
+
+    @NonNull ConstructionMaterial update(@NonNull InputConstructionMaterialDto constructionMaterialDto);
 }

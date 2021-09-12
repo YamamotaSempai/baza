@@ -6,4 +6,8 @@ import lombok.NonNull;
 
 public interface CategoryService {
     @NonNull Category create(@NonNull InputCategory inputCategory);
+
+    Category get(@NonNull Long id);
+
+    Category get(@NonNull String name);
 }

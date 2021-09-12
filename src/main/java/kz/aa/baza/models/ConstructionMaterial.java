@@ -1,10 +1,7 @@
 package kz.aa.baza.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -30,6 +27,9 @@ public class ConstructionMaterial {
     @Column(name = "author")
     @NotNull
     private Long author;
+
+    @Column(name = "updated_by")
+    private Long updatedBy;
 
     @Column(name = "title", length = 100)
     @NotNull
@@ -58,6 +58,19 @@ public class ConstructionMaterial {
     @ManyToOne(optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    public ConstructionMaterial() {
+    }
+
+    @Builder
+    public ConstructionMaterial(String title, String description, String address, double price, Long cityId, Category category) {
+        this.title = title;
+        this.description = description;
+        this.address = address;
+        this.price = price;
+        this.cityId = cityId;
+        this.category = category;
+    }
 
     @Override
     public boolean equals(Object o) {

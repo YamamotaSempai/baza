@@ -31,8 +31,9 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoryGroup>> getAll() {
-        final List<CategoryGroup> categoryGroups = categoryGroupService.getAll();
+    public ResponseEntity<List<CategoryGroup>> getAll(@RequestParam(required = false) Long parent,
+                                                      @RequestParam(required = false) String name) {
+        final List<CategoryGroup> categoryGroups = categoryGroupService.getAll(parent, name);
         return ResponseEntity.ok(categoryGroups);
     }
 }
