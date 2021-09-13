@@ -1,11 +1,10 @@
 package kz.aa.baza.configs;
 
-import kz.aa.registry.configs.CustomAuthenticationProvider;
-import kz.aa.registry.jwt.JWTConfigurer;
-import kz.aa.registry.jwt.JwtAccessDeniedHandler;
-import kz.aa.registry.jwt.JwtAuthenticationEntryPoint;
-import kz.aa.registry.jwt.TokenProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
+import kz.aa.baza.jwt.JWTConfigurer;
+import kz.aa.baza.jwt.JwtAccessDeniedHandler;
+import kz.aa.baza.jwt.JwtAuthenticationEntryPoint;
+import kz.aa.baza.jwt.TokenProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -21,25 +20,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CorsFilter corsFilter;
     private final TokenProvider tokenProvider;
-    private final CustomAuthenticationProvider authProvider;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final JwtAuthenticationEntryPoint authenticationErrorHandler;
 
     public WebSecurityConfig(CorsFilter corsFilter,
                              TokenProvider tokenProvider,
-                             CustomAuthenticationProvider authProvider,
                              JwtAccessDeniedHandler jwtAccessDeniedHandler,
                              JwtAuthenticationEntryPoint authenticationErrorHandler) {
         this.tokenProvider = tokenProvider;
         this.corsFilter = corsFilter;
-        this.authProvider = authProvider;
         this.authenticationErrorHandler = authenticationErrorHandler;
         this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(authProvider);
     }
 
     @Override

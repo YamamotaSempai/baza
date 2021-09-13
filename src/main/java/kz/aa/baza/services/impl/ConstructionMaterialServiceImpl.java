@@ -9,7 +9,7 @@ import kz.aa.baza.repositories.ConstructionMaterialRepository;
 import kz.aa.baza.services.CategoryService;
 import kz.aa.baza.services.CityService;
 import kz.aa.baza.services.ConstructionMaterialService;
-import kz.aa.registry.City;
+import kz.as.registry.City;
 import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

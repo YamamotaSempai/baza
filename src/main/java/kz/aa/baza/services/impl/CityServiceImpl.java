@@ -1,8 +1,8 @@
 package kz.aa.baza.services.impl;
 
 import kz.aa.baza.services.CityService;
-import kz.aa.registry.City;
-import kz.aa.registry.CityServiceGrpc;
+import kz.as.registry.City;
+import kz.as.registry.CityServiceGrpc;
 import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
