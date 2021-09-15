@@ -41,5 +41,3 @@ ALTER TABLE category_group
 
 ALTER TABLE constructor_materials
     ADD CONSTRAINT FK_CONSTRUCTOR_MATERIALS_ON_CATEGORY FOREIGN KEY (category_id) REFERENCES category (id);
-
-DROP SEQUENCE city_seq CASCADE;
